@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban DZ | المنتجات</title>
+
+<style>
+:root{
+    --bg:#0a0a0a;
+    --accent:#00ff9d;
+    --card:#161616;
+    --text:#fff;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:sans-serif;
+}
+
+h1{
+    text-align:center;
+    margin:20px 0;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    border:1px solid #222;
+    border-radius:12px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:var(--accent);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.info{
+    padding:10px;
+}
+
+.price{
+    color:var(--accent);
+    font-weight:bold;
+    margin:8px 0;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:var(--accent);
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00cc7a;
+}
+</style>
+</head>
+
+<body>
+
+<h1>منتجات Urban DZ</h1>
+
+<div class="grid">
+
+<!-- PRODUCT 1 -->
+<div class="card">
+    <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg">
+    <div class="info">
+        <p class="price">4500 دج</p>
+        <button onclick="order('المنتج 1',4500)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="card">
+    <img src="images/1776760694605.png">
+    <div class="info">
+        <p class="price">3000 دج</p>
+        <button onclick="order('المنتج 2',3000)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="card">
+    <img src="images/34f69334ae9678325b0f2e81120417e9.jpg">
+    <div class="info">
+        <p class="price">3800 دج</p>
+        <button onclick="order('المنتج 3',3800)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="card">
+    <img src="images/6b8928a16d0de61fd3f61f15b06c9c65.jpg">
+    <div class="info">
+        <p class="price">4000 دج</p>
+        <button onclick="order('المنتج 4',4000)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 5 -->
+<div class="card">
+    <img src="images/823039fe5e5030e66798f11e69823ee0.jpg">
+    <div class="info">
+        <p class="price">3500 دج</p>
+        <button onclick="order('المنتج 5',3500)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 6 -->
+<div class="card">
+    <img src="images/9b0681c634d72d8ab880fd4091dba21a.jpg">
+    <div class="info">
+        <p class="price">5000 دج</p>
+        <button onclick="order('المنتج 6',5000)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 7 -->
+<div class="card">
+    <img src="images/e906a4192df53b015be23eca79dcf1ed.jpg">
+    <div class="info">
+        <p class="price">4200 دج</p>
+        <button onclick="order('المنتج 7',4200)">طلب الآن</button>
+    </div>
+</div>
+
+<!-- PRODUCT 8 -->
+<div class="card">
+    <img src="images/f13d461a52de34f9b012cc64366238bf.jpg">
+    <div class="info">
+        <p class="price">3900 دج</p>
+        <button onclick="order('المنتج 8',3900)">طلب الآن</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+function order(product,price){
+
+let name = prompt("الاسم:");
+let phone = prompt("رقم الهاتف:");
+let state = prompt("الولاية:");
+let qty = prompt("الكمية:");
+
+if(!name || !phone || !state || !qty){
+    alert("أكمل جميع المعلومات");
+    return;
+}
+
+let msg =
+`طلب جديد Urban DZ%0A
+المنتج: ${product}%0A
+السعر: ${price} دج%0A
+الاسم: ${name}%0A
+الهاتف: ${phone}%0A
+الولاية: ${state}%0A
+الكمية: ${qty}`;
+
+window.open(`https://wa.me/213559049058?text=${msg}`,'_blank');
+
+}
+</script>
+
+</body>
+</html>
