@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban DZ | المتجر الرئيسي</title>
+
+<style>
+:root{
+    --bg:#0a0a0a;
+    --accent:#00ff9d;
+    --text:#ffffff;
+    --card:#161616;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    text-align:center;
+}
+
+/* HERO */
+.hero{
+    padding:60px 20px;
+}
+
+.logo{
+    width:220px;
+    border-radius:15px;
+    border:2px solid var(--accent);
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:2rem;
+}
+
+p{
+    opacity:0.8;
+    margin-top:10px;
+}
+
+.button{
+    display:inline-block;
+    margin-top:25px;
+    padding:14px 35px;
+    background:var(--accent);
+    color:black;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.button:hover{
+    transform:scale(1.05);
+}
+
+/* FEATURED */
+.featured{
+    margin-top:40px;
+}
+
+.grid-small{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    max-width:420px;
+    margin:20px auto;
+}
+
+.grid-small img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #222;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+    <img src="images/file_000000006fd471fd880abafa95a07cc0.png" class="logo">
+    <h1>مرحباً بك في Urban DZ</h1>
+    <p>أفضل تصاميم الملابس العصرية في الجزائر</p>
+
+    <a href="shop.html" class="button">تصفح المنتجات</a>
+</div>
+
+<div class="featured">
+    <h3>منتجات مختارة</h3>
+
+    <div class="grid-small">
+        <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg">
+        <img src="images/34f69334ae9678325b0f2e81120417e9.jpg">
+    </div>
+</div>
+
+</body>
+</html>
