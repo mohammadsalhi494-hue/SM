@@ -1,42 +1,262 @@
+cd /home/claude
+
+IMG1=$(base64 -w 0 12f09fb0d69cc48b1524f6d3bf8caab2.jpg)
+IMG2=$(base64 -w 0 34f69334ae9678325b0f2e81120417e9.jpg)
+IMG3=$(base64 -w 0 9b0681c634d72d8ab880fd4091dba21a.jpg)
+IMG4=$(base64 -w 0 f13d461a52de34f9b012cc64366238bf.jpg)
+IMG5=$(base64 -w 0 e906a4192df53b015be23eca79dcf1ed.jpg)
+IMG6=$(base64 -w 0 6b8928a16d0de61fd3f61f15b06c9c65.jpg)
+IMG7=$(base64 -w 0 823039fe5e5030e66798f11e69823ee0.jpg)
+
+cat > /home/claude/index.html << HTMLEOF
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Urban DZ | الرئيسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
-    :root { --caramel: #c8a96e; --dark: #080808; --card: #111111; --text: #f0f0f0; }
-    body { background: var(--dark); color: var(--text); font-family: sans-serif; margin: 0; }
-    .ticker-wrap { background: var(--caramel); color: #000; padding: 10px; text-align: center; font-weight: bold; }
-    nav { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #333; }
-    .btn-primary { background: var(--caramel); color: #000; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
-    .product-card { background: var(--card); padding: 15px; border-radius: 10px; width: 250px; }
-    .details-btn { background: transparent; border: 1px solid var(--caramel); color: var(--caramel); padding: 8px; width: 100%; margin-top: 10px; cursor: pointer; }
-    .details-btn:hover { background: var(--caramel); color: #000; }
+    :root{--green:#b5ff2b;--dark:#080808;--card:#111;--border:#1e1e1e;--text:#f0f0f0;--muted:#888}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--dark);color:var(--text);font-family:'Cairo',sans-serif;overflow-x:hidden}
+    .ticker-wrap{background:var(--green);overflow:hidden;white-space:nowrap;padding:8px 0}
+    .ticker-inner{display:inline-flex;animation:ticker 22s linear infinite}
+    .ticker-inner span{font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:3px;padding:0 28px;color:#000}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(8,8,8,.96);backdrop-filter:blur(12px);z-index:100}
+    .nav-logo{font-family:'Bebas Neue',cursive;font-size:2rem;color:#fff;letter-spacing:2px;text-decoration:none}
+    .nav-logo span{color:var(--green)}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:700;letter-spacing:1px;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--green)}
+    .cart-btn{background:var(--green);color:#000;border:none;padding:9px 22px;border-radius:4px;font-family:'Cairo',sans-serif;font-weight:700;cursor:pointer;font-size:.85rem;transition:opacity .2s}
+    .cart-btn:hover{opacity:.85}
+    .hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:60px 40px;position:relative;overflow:hidden;gap:40px}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(181,255,43,.07) 0%,transparent 70%);pointer-events:none}
+    .hero-text{position:relative;z-index:2}
+    .hero-badge{display:inline-block;background:var(--green);color:#000;font-size:.7rem;font-weight:700;letter-spacing:3px;padding:5px 14px;border-radius:2px;margin-bottom:20px}
+    .hero-title{font-family:'Bebas Neue',cursive;font-size:clamp(4rem,8vw,7rem);line-height:.95;letter-spacing:2px;margin-bottom:10px}
+    .hero-title .green{color:var(--green)}
+    .hero-title .outline{-webkit-text-stroke:2px white;color:transparent}
+    .hero-tagline{font-size:1rem;color:var(--muted);margin:20px 0 35px;line-height:1.7;max-width:380px}
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-primary{background:var(--green);color:#000;padding:14px 35px;border-radius:4px;font-weight:700;text-decoration:none;font-size:.95rem;transition:transform .2s,box-shadow .2s;display:inline-block}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(181,255,43,.3)}
+    .btn-outline{border:2px solid var(--border);color:#fff;padding:14px 35px;border-radius:4px;font-weight:700;text-decoration:none;font-size:.95rem;transition:border-color .2s,color .2s;display:inline-block}
+    .btn-outline:hover{border-color:var(--green);color:var(--green)}
+    .hero-image{display:flex;justify-content:center;align-items:center}
+    .hero-img-box{width:100%;max-width:420px;aspect-ratio:3/4;border-radius:14px;border:1px solid var(--border);overflow:hidden;position:relative}
+    .hero-img-box img{width:100%;height:100%;object-fit:cover}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stat{padding:28px 18px;text-align:center;border-left:1px solid var(--border);display:flex;align-items:center;gap:12px}
+    .stat:last-child{border-left:none}
+    .stat-icon{font-size:1.7rem;flex-shrink:0}
+    .stat-text h4{font-size:.9rem;font-weight:700}
+    .stat-text p{font-size:.72rem;color:var(--muted);margin-top:2px}
+    .section{padding:65px 40px}
+    .section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px}
+    .section-title{font-family:'Bebas Neue',cursive;font-size:2.6rem;letter-spacing:2px;line-height:1}
+    .section-title span{color:var(--green)}
+    .section-link{color:var(--green);text-decoration:none;font-size:.85rem;font-weight:700;border-bottom:1px solid var(--green);padding-bottom:2px}
+    .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .product-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
+    .product-card:hover{border-color:var(--green);transform:translateY(-4px)}
+    .product-img{aspect-ratio:1;overflow:hidden;background:#161616;position:relative}
+    .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .product-card:hover .product-img img{transform:scale(1.07)}
+    .product-badge{position:absolute;top:10px;right:10px;background:var(--green);color:#000;font-size:.63rem;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:1px}
+    .product-info{padding:14px}
+    .product-name{font-size:.88rem;font-weight:700;margin-bottom:6px}
+    .product-price{color:var(--green);font-weight:700;font-size:1rem}
+    .product-price span{color:var(--muted);font-size:.73rem;text-decoration:line-through;margin-right:5px;font-weight:400}
+    .product-buy{display:block;width:100%;background:transparent;border:1px solid var(--border);color:#fff;padding:10px;border-radius:6px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.83rem;cursor:pointer;margin-top:10px;transition:background .2s,border-color .2s,color .2s}
+    .product-buy:hover{background:var(--green);border-color:var(--green);color:#000}
+    .promo-banner{margin:0 40px;background:var(--green);border-radius:12px;padding:50px 60px;display:flex;justify-content:space-between;align-items:center;overflow:hidden;position:relative}
+    .promo-banner::after{content:'DZ';font-family:'Bebas Neue',cursive;font-size:14rem;color:rgba(0,0,0,.07);position:absolute;left:-10px;top:-40px;line-height:1;pointer-events:none}
+    .promo-text h2{font-family:'Bebas Neue',cursive;font-size:2.8rem;color:#000;letter-spacing:2px;line-height:1.1}
+    .promo-text p{color:rgba(0,0,0,.6);margin-top:8px;font-size:.9rem}
+    .promo-btn{background:#000;color:var(--green);padding:15px 38px;border-radius:6px;font-weight:700;text-decoration:none;font-size:.95rem;white-space:nowrap;transition:opacity .2s;position:relative;z-index:1}
+    .promo-btn:hover{opacity:.85}
+    footer{margin-top:80px;border-top:1px solid var(--border);padding:50px 40px 30px}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+    .footer-brand .logo-text{font-family:'Bebas Neue',cursive;font-size:2rem;letter-spacing:2px;margin-bottom:12px}
+    .footer-brand .logo-text span{color:var(--green)}
+    .footer-brand p{color:var(--muted);font-size:.83rem;line-height:1.7;max-width:280px}
+    .footer-col h4{font-weight:700;margin-bottom:14px;font-size:.85rem;letter-spacing:1px}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:9px}
+    .footer-col ul li a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .2s}
+    .footer-col ul li a:hover{color:var(--green)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:22px;color:var(--muted);font-size:.78rem}
+    @media(max-width:768px){
+      nav{padding:14px 18px}
+      .nav-links{display:none}
+      .hero{grid-template-columns:1fr;padding:35px 18px;text-align:center}
+      .hero-tagline{margin:18px auto 28px}
+      .hero-btns{justify-content:center}
+      .hero-image{display:none}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .section{padding:45px 18px}
+      .products-grid{grid-template-columns:repeat(2,1fr)}
+      .promo-banner{flex-direction:column;gap:20px;text-align:center;margin:0 18px;padding:32px 22px}
+      .footer-top{grid-template-columns:1fr}
+      .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+    }
   </style>
 </head>
 <body>
-  <div class="ticker-wrap">URBAN DZ | التوصيل متوفر لجميع ولايات الوطن</div>
-  <nav>
-    <div style="font-size: 1.5rem; font-weight: bold;">URBAN <span style="color:var(--caramel)">DZ</span></div>
-    <div>
-      <a href="index.html" style="color:white; margin:0 10px;">الرئيسية</a>
-      <a href="shop.html" style="color:white;">المتجر</a>
-    </div>
-  </nav>
-
-  <section style="padding: 50px; text-align: center;">
-    <h1>مرحباً بك في <span style="color:var(--caramel)">URBAN DZ</span></h1>
-    <p>تصاميم جزائرية بجودة عالمية</p>
-    <a href="shop.html" class="btn-primary">تصفح المنتجات</a>
-  </section>
-
-  <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
-    <div class="product-card">
-      <img src="images/f13d461a52de34f9b012cc64366238bf.jpg" width="100%" height="200px" style="object-fit:cover;">
-      <h3>تراكسوت Urban DZ</h3>
-      <button class="details-btn" onclick="alert('تراكسوت رياضي بتصميم Urban عصري، مصنوع من القطن الثقيل عالي الجودة ليمنحك الراحة والدفء في الأيام الباردة.')">التفاصيل</button>
-      <button class="btn-primary" style="width:100%; margin-top:10px;">طلب الآن</button>
+<div class="ticker-wrap"><div class="ticker-inner">
+  <span>URBAN DZ</span><span>✦</span><span>MADE IN ALGERIA</span><span>✦</span>
+  <span>FREE DELIVERY</span><span>✦</span><span>NEW ARRIVALS</span><span>✦</span>
+  <span>STYLE STARTS HERE</span><span>✦</span><span>SHOP NOW</span><span>✦</span>
+  <span>URBAN DZ</span><span>✦</span><span>MADE IN ALGERIA</span><span>✦</span>
+  <span>FREE DELIVERY</span><span>✦</span><span>NEW ARRIVALS</span><span>✦</span>
+  <span>STYLE STARTS HERE</span><span>✦</span><span>SHOP NOW</span><span>✦</span>
+</div></div>
+<nav>
+  <a href="index.html" class="nav-logo">URBAN <span>DZ</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">ACCUEIL</a></li>
+    <li><a href="shop.html">HOMME</a></li>
+    <li><a href="shop.html">FEMME</a></li>
+    <li><a href="shop.html">NOUVEAUTÉS</a></li>
+    <li><a href="#">CONTACT</a></li>
+  </ul>
+  <button class="cart-btn" onclick="window.location='shop.html'">🛒 السلة</button>
+</nav>
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">🇩🇿 Made in Algeria</div>
+    <h1 class="hero-title">
+      <span class="green">URBAN</span><br>
+      <span class="outline">DZ</span><br>
+      <span style="font-size:.38em;letter-spacing:8px;font-family:'Cairo',sans-serif;font-weight:900;color:var(--text)">STYLE STARTS HERE</span>
+    </h1>
+    <p class="hero-tagline">أفضل تصاميم الملابس العصرية في الجزائر — ستايل شبابي، جودة عالية، وأسعار تناسيك</p>
+    <div class="hero-btns">
+      <a href="shop.html" class="btn-primary">SHOP NOW →</a>
+      <a href="shop.html" class="btn-outline">NEW ARRIVALS</a>
     </div>
   </div>
+  <div class="hero-image">
+    <div class="hero-img-box">
+      <img src="data:image/jpeg;base64,${IMG1}" alt="هودي واسع رمادي">
+    </div>
+  </div>
+</section>
+<div class="stats">
+  <div class="stat"><div class="stat-icon">🚚</div><div class="stat-text"><h4>توصيل سريع</h4><p>في جميع أنحاء الجزائر</p></div></div>
+  <div class="stat"><div class="stat-icon">✅</div><div class="stat-text"><h4>جودة عالية</h4><p>منتجات أصلية %100</p></div></div>
+  <div class="stat"><div class="stat-icon">💰</div><div class="stat-text"><h4>أسعار مناسبة</h4><p>أفضل الأسعار للجميع</p></div></div>
+  <div class="stat"><div class="stat-icon">🎧</div><div class="stat-text"><h4>خدمة العملاء</h4><p>نحن هنا لمساعدتك</p></div></div>
+</div>
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">منتجات <span>مميزة</span></h2>
+    <a href="shop.html" class="section-link">عرض الكل ←</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <img src="data:image/jpeg;base64,${IMG1}" alt="هودي واسع رمادي فاتح">
+        <div class="product-badge">NEW</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">هودي واسع - رمادي فاتح</div>
+        <div class="product-price"><span>5000 دج</span>4500 دج</div>
+        <button class="product-buy" onclick="openOrder('هودي واسع رمادي فاتح',4500)">طلب الآن</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="data:image/jpeg;base64,${IMG2}" alt="سويت شيرت كرو أسود">
+        <div class="product-badge">BEST</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">سويت شيرت كرو - أسود</div>
+        <div class="product-price">3800 دج</div>
+        <button class="product-buy" onclick="openOrder('سويت شيرت كرو أسود',3800)">طلب الآن</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="data:image/jpeg;base64,${IMG5}" alt="بنطلون سويت أسود">
+        <div class="product-badge">HOT</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">بنطلون سويت واسع - أسود</div>
+        <div class="product-price">3000 دج</div>
+        <button class="product-buy" onclick="openOrder('بنطلون سويت واسع أسود',3000)">طلب الآن</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="data:image/jpeg;base64,${IMG3}" alt="سويت شيرت نايكي كحلي">
+        <div class="product-badge">PRO</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">سويت شيرت نايكي - كحلي</div>
+        <div class="product-price">5000 دج</div>
+        <button class="product-buy" onclick="openOrder('سويت شيرت نايكي كحلي',5000)">طلب الآن</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="promo-banner">
+  <div class="promo-text">
+    <h2>وصيلات حصرية<br>على المجموعات الجديدة</h2>
+    <p>اكتشف أحدث الموديلات — جودة عالية بأسعار تناسيك 🔥</p>
+  </div>
+  <a href="shop.html" class="promo-btn">تسوق الآن ←</a>
+</div>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-text">URBAN <span>DZ</span></div>
+      <p>أفضل تصاميم الملابس العصرية في الجزائر. ستايل شبابي، جودة عالية، وأسعار تناسيك.</p>
+      <div style="margin-top:16px;display:flex;gap:12px">
+        <a href="#" style="color:var(--green);text-decoration:none;font-size:1.3rem">📘</a>
+        <a href="#" style="color:var(--green);text-decoration:none;font-size:1.3rem">📷</a>
+        <a href="https://wa.me/213559049058" style="color:var(--green);text-decoration:none;font-size:1.3rem">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>الأقسام</h4>
+      <ul>
+        <li><a href="shop.html">هوديات</a></li>
+        <li><a href="shop.html">سويت شيرت</a></li>
+        <li><a href="shop.html">بنطلونات</a></li>
+        <li><a href="shop.html">كل المنتجات</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>تواصل معنا</h4>
+      <ul>
+        <li><a href="https://wa.me/213559049058">واتساب: 0559049058</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Urban DZ — جميع الحقوق محفوظة</span>
+    <span>🇩🇿 Made in Algeria</span>
+  </div>
+</footer>
+<script>
+function openOrder(name,price){
+  let n=prompt("الاسم واللقب:");if(!n)return;
+  let p=prompt("رقم الهاتف:");if(!p)return;
+  let s=prompt("الولاية:");if(!s)return;
+  let q=prompt("عدد القطع:","1");if(!q)return;
+  let total=price*parseInt(q);
+  let msg="🛍️ *طلب جديد - Urban DZ*%0A%0A🔹 *المنتج:* "+name+"%0A💰 *السعر:* "+price+" دج%0A📦 *العدد:* "+q+"%0A💵 *الإجمالي:* "+total+" دج%0A%0A👤 *الزبون:* "+n+"%0A📞 *الهاتف:* "+p+"%0A📍 *الولاية:* "+s;
+  window.open("https://wa.me/213559049058?text="+msg,"_blank");
+}
+</script>
 </body>
 </html>
+HTMLEOF
+echo "index done: $(wc -c < /home/claude/index.html) bytes"
