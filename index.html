@@ -7,12 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green: #b5ff2b;
+      --primary: #51443A; /* البني الجديد */
+      --bg: #F3E9D5;      /* الكريمي الجديد */
       --dark: #080808;
-      --card: #111111;
-      --border: #1e1e1e;
-      --text: #f0f0f0;
-      --muted: #888;
+      --card: #ffffff;
+      --border: #E0D5C5;
+      --text: #51443A;    /* البني للنصوص */
+      --muted: #8c7e72;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,7 +21,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--dark);
+      background: var(--bg);
       color: var(--text);
       font-family: 'Cairo', sans-serif;
       overflow-x: hidden;
@@ -28,8 +29,8 @@
 
     /* ===== TICKER ===== */
     .ticker-wrap {
-      background: var(--green);
-      color: #000;
+      background: var(--primary);
+      color: #fff;
       overflow: hidden;
       white-space: nowrap;
       padding: 8px 0;
@@ -58,17 +59,17 @@
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      background: rgba(8,8,8,0.95);
+      background: rgba(243, 233, 213, 0.95);
       backdrop-filter: blur(10px);
       z-index: 100;
     }
     .nav-logo {
       font-family: 'Bebas Neue', cursive;
       font-size: 2rem;
-      color: white;
+      color: var(--primary);
       letter-spacing: 2px;
     }
-    .nav-logo span { color: var(--green); }
+    .nav-logo span { color: var(--primary); }
     .nav-links {
       display: flex;
       gap: 30px;
@@ -79,29 +80,19 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 1px;
       transition: color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--green); }
-    .nav-icons { display: flex; gap: 20px; align-items: center; }
-    .nav-icons a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); }
     .cart-btn {
-      background: var(--green);
-      color: #000;
+      background: var(--primary);
+      color: white;
       border: none;
       padding: 8px 20px;
       border-radius: 4px;
       font-family: 'Cairo', sans-serif;
       font-weight: 700;
       cursor: pointer;
-      font-size: 0.85rem;
-      transition: opacity 0.2s;
     }
-    .cart-btn:hover { opacity: 0.85; }
 
     /* ===== HERO ===== */
     .hero {
@@ -110,664 +101,94 @@
       grid-template-columns: 1fr 1fr;
       align-items: center;
       padding: 60px 40px;
-      position: relative;
-      overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(181,255,43,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-text { position: relative; z-index: 2; }
     .hero-badge {
-      display: inline-block;
-      background: var(--green);
-      color: #000;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 3px;
+      background: var(--primary);
+      color: white;
       padding: 5px 14px;
-      border-radius: 2px;
+      font-size: 0.7rem;
       margin-bottom: 20px;
-      text-transform: uppercase;
+      display: inline-block;
     }
     .hero-title {
       font-family: 'Bebas Neue', cursive;
       font-size: clamp(4rem, 8vw, 7rem);
       line-height: 0.95;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
+      color: var(--primary);
     }
-    .hero-title .green { color: var(--green); }
-    .hero-title .outline {
-      -webkit-text-stroke: 2px white;
-      color: transparent;
-    }
-    .hero-tagline {
-      font-size: 1rem;
-      color: var(--muted);
-      margin: 20px 0 35px;
-      line-height: 1.7;
-      max-width: 380px;
-    }
-    .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--green);
-      color: #000;
-      padding: 14px 35px;
-      border-radius: 4px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: inline-block;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(181,255,43,0.3);
-    }
-    .btn-outline {
-      border: 2px solid var(--border);
+      background: var(--primary);
       color: white;
       padding: 14px 35px;
-      border-radius: 4px;
-      font-weight: 700;
       text-decoration: none;
-      font-size: 0.95rem;
-      transition: border-color 0.2s;
+      font-weight: 700;
+      border-radius: 4px;
       display: inline-block;
     }
-    .btn-outline:hover { border-color: var(--green); color: var(--green); }
 
-    .hero-image {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hero-img-box {
-      width: 100%;
-      max-width: 450px;
-      aspect-ratio: 3/4;
-      background: var(--card);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      position: relative;
-    }
-    .hero-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero-img-box .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    .hero-img-box .img-placeholder svg {
-      width: 60px;
-      height: 60px;
-      opacity: 0.3;
-    }
-    .hero-tag {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.85);
-      border: 1px solid var(--green);
-      padding: 10px 16px;
-      border-radius: 8px;
-    }
-    .hero-tag p { font-size: 0.75rem; color: var(--muted); }
-    .hero-tag strong { color: var(--green); font-size: 1rem; }
-
-    /* ===== STATS ===== */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stat {
-      padding: 30px 20px;
-      text-align: center;
-      border-left: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .stat:last-child { border-left: none; }
-    .stat-icon {
-      font-size: 1.8rem;
-      flex-shrink: 0;
-    }
-    .stat-text h4 { font-size: 0.95rem; font-weight: 700; }
-    .stat-text p { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-
-    /* ===== CATEGORIES ===== */
-    .section { padding: 70px 40px; }
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 35px;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2.8rem;
-      letter-spacing: 2px;
-      line-height: 1;
-    }
-    .section-title span { color: var(--green); }
-    .section-link {
-      color: var(--green);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-bottom: 1px solid var(--green);
-      padding-bottom: 2px;
-    }
-
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-    .cat-card {
-      position: relative;
-      aspect-ratio: 3/4;
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      background: var(--card);
-      border: 1px solid var(--border);
-    }
-    .cat-card:first-child {
-      grid-column: span 2;
-      aspect-ratio: auto;
-    }
-    .cat-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-    .cat-card:hover img { transform: scale(1.05); }
-    .cat-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 20px;
-    }
-    .cat-label {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-    }
-    .cat-sub {
-      color: var(--green);
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-    .cat-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 200px;
-    }
-
-    /* ===== FEATURED PRODUCTS ===== */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
+    /* ===== PRODUCTS ===== */
     .product-card {
-      background: var(--card);
+      background: white;
       border: 1px solid var(--border);
+      padding: 15px;
       border-radius: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: pointer;
     }
-    .product-card:hover {
-      border-color: var(--green);
-      transform: translateY(-4px);
-    }
-    .product-img {
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #161616;
-      position: relative;
-    }
-    .product-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-    .product-card:hover .product-img img { transform: scale(1.08); }
-    .product-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: var(--green);
-      color: #000;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 3px;
-      letter-spacing: 1px;
-    }
-    .product-info { padding: 14px; }
-    .product-name {
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .product-price {
-      color: var(--green);
-      font-weight: 700;
-      font-size: 1rem;
-    }
-    .product-price span {
-      color: var(--muted);
-      font-size: 0.75rem;
-      text-decoration: line-through;
-      margin-right: 6px;
-      font-weight: 400;
-    }
+    .product-price { color: var(--primary); font-weight: 700; }
     .product-buy {
-      display: block;
+      background: white;
+      border: 2px solid var(--primary);
+      color: var(--primary);
       width: 100%;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: white;
       padding: 10px;
-      border-radius: 6px;
-      font-family: 'Cairo', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
       cursor: pointer;
       margin-top: 10px;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
-    .product-buy:hover {
-      background: var(--green);
-      border-color: var(--green);
-      color: #000;
-    }
-
-    /* ===== BANNER ===== */
-    .promo-banner {
-      margin: 0 40px;
-      background: var(--green);
-      border-radius: 12px;
-      padding: 50px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-    }
-    .promo-banner::after {
-      content: 'DZ';
-      font-family: 'Bebas Neue', cursive;
-      font-size: 15rem;
-      color: rgba(0,0,0,0.08);
-      position: absolute;
-      left: -20px;
-      top: -40px;
-      line-height: 1;
-      pointer-events: none;
-    }
-    .promo-text h2 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 3rem;
-      color: #000;
-      letter-spacing: 2px;
-      line-height: 1.1;
-    }
-    .promo-text p {
-      color: rgba(0,0,0,0.65);
-      margin-top: 8px;
-      font-size: 0.95rem;
-    }
-    .promo-btn {
-      background: #000;
-      color: var(--green);
-      padding: 16px 40px;
-      border-radius: 6px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      white-space: nowrap;
-      transition: opacity 0.2s;
-    }
-    .promo-btn:hover { opacity: 0.85; }
+    .product-buy:hover { background: var(--primary); color: white; }
 
     /* ===== FOOTER ===== */
     footer {
-      margin-top: 80px;
-      border-top: 1px solid var(--border);
-      padding: 50px 40px 30px;
+      background: var(--primary);
+      color: #fff;
+      padding: 50px 40px;
+      margin-top: 50px;
     }
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    .footer-brand .logo-text {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 2rem;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-    .footer-brand .logo-text span { color: var(--green); }
-    .footer-brand p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
-    .footer-col h4 {
-      font-weight: 700;
-      margin-bottom: 16px;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul li a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
-    }
-    .footer-col ul li a:hover { color: var(--green); }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border);
-      padding-top: 25px;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    /* ===== RESPONSIVE ===== */
+    
     @media (max-width: 768px) {
-      nav { padding: 15px 20px; }
       .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 40px 20px; text-align: center; }
-      .hero-tagline { margin: 20px auto 30px; }
-      .hero-btns { justify-content: center; }
-      .hero-image { display: none; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .section { padding: 50px 20px; }
-      .cat-grid { grid-template-columns: repeat(2, 1fr); }
-      .cat-card:first-child { grid-column: span 2; }
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .promo-banner { flex-direction: column; gap: 20px; text-align: center; margin: 0 20px; padding: 35px 25px; }
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .hero { grid-template-columns: 1fr; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
     <span>URBAN DZ</span><span>✦</span><span>MADE IN ALGERIA</span><span>✦</span>
-    <span>FREE DELIVERY</span><span>✦</span><span>NEW ARRIVALS</span><span>✦</span>
-    <span>STYLE STARTS HERE</span><span>✦</span><span>SHOP NOW</span><span>✦</span>
-    <span>URBAN DZ</span><span>✦</span><span>MADE IN ALGERIA</span><span>✦</span>
-    <span>FREE DELIVERY</span><span>✦</span><span>NEW ARRIVALS</span><span>✦</span>
     <span>STYLE STARTS HERE</span><span>✦</span><span>SHOP NOW</span><span>✦</span>
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">URBAN <span>DZ</span></div>
+  <div class="nav-logo">URBAN DZ</div>
   <ul class="nav-links">
-    <li><a href="index.html" class="active">ACCUEIL</a></li>
-    <li><a href="shop.html">HOMME</a></li>
-    <li><a href="shop.html">FEMME</a></li>
-    <li><a href="shop.html">NOUVEAUTÉS</a></li>
-    <li><a href="#">CONTACT</a></li>
+    <li><a href="#" class="active">الرئيسية</a></li>
+    <li><a href="#">المتجر</a></li>
   </ul>
-  <div class="nav-icons">
-    <button class="cart-btn" onclick="window.location='shop.html'">🛒 السلة</button>
-  </div>
+  <button class="cart-btn" onclick="window.location='shop.html'">🛒 السلة</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <div class="hero-badge">🇩🇿 Made in Algeria</div>
-    <h1 class="hero-title">
-      <span class="green">URBAN</span><br>
-      <span class="outline">DZ</span><br>
-      <span style="font-size:0.4em; letter-spacing:8px; font-family:'Cairo',sans-serif; font-weight:900; color:var(--text);">STYLE STARTS HERE</span>
-    </h1>
-    <p class="hero-tagline">أفضل تصاميم الملابس العصرية في الجزائر — ستايل شبابي، جودة عالية، وأسعار تناسيك</p>
-    <div class="hero-btns">
-      <a href="shop.html" class="btn-primary">SHOP NOW →</a>
-      <a href="shop.html" class="btn-outline">NEW ARRIVALS</a>
-    </div>
-  </div>
-  <div class="hero-image">
-    <div class="hero-img-box">
-      <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
-        </svg>
-        <span>ضع صورة المنتج هنا</span>
-        <small style="color:#555">images/hero.jpg</small>
-      </div>
-    </div>
+    <div class="hero-badge">MADE IN ALGERIA</div>
+    <h1 class="hero-title">URBAN<br>DZ</h1>
+    <p>أفضل تصاميم الملابس العصرية في الجزائر</p>
+    <br>
+    <a href="shop.html" class="btn-primary">تسوق الآن</a>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <div class="stat-icon">🚚</div>
-    <div class="stat-text">
-      <h4>توصيل سريع</h4>
-      <p>في جميع أنحاء الجزائر</p>
-    </div>
-  </div>
-  <div class="stat">
-    <div class="stat-icon">✅</div>
-    <div class="stat-text">
-      <h4>جودة عالية</h4>
-      <p>منتجات أصلية %100</p>
-    </div>
-  </div>
-  <div class="stat">
-    <div class="stat-icon">💰</div>
-    <div class="stat-text">
-      <h4>أسعار مناسبة</h4>
-      <p>أفضل الأسعار للجميع</p>
-    </div>
-  </div>
-  <div class="stat">
-    <div class="stat-icon">🎧</div>
-    <div class="stat-text">
-      <h4>خدمة العملاء</h4>
-      <p>نحن هنا لمساعدتك</p>
-    </div>
-  </div>
-</div>
-
-<!-- CATEGORIES -->
-<section class="section">
-  <div class="section-header">
-    <h2 class="section-title">SHOP BY <span>CATEGORY</span></h2>
-    <a href="shop.html" class="section-link">عرض الكل ←</a>
-  </div>
-  <div class="cat-grid">
-    <div class="cat-card" onclick="window.location='shop.html'">
-      <div class="cat-placeholder" style="background:linear-gradient(135deg,#161616,#0e0e0e);">
-        <div style="text-align:center;color:#333">
-          <div style="font-size:4rem">👕</div>
-          <small>images/cat-homme.jpg</small>
-        </div>
-      </div>
-      <div class="cat-overlay">
-        <div class="cat-label">HOMME</div>
-        <div class="cat-sub">تسوق الآن →</div>
-      </div>
-    </div>
-    <div class="cat-card" onclick="window.location='shop.html'">
-      <div class="cat-placeholder" style="background:linear-gradient(135deg,#161616,#0e0e0e);">
-        <div style="text-align:center;color:#333">
-          <div style="font-size:4rem">👗</div>
-          <small>images/cat-femme.jpg</small>
-        </div>
-      </div>
-      <div class="cat-overlay">
-        <div class="cat-label">FEMME</div>
-        <div class="cat-sub">تسوق الآن →</div>
-      </div>
-    </div>
-    <div class="cat-card" onclick="window.location='shop.html'">
-      <div class="cat-placeholder" style="background:linear-gradient(135deg,#161616,#0e0e0e);">
-        <div style="text-align:center;color:#333">
-          <div style="font-size:4rem">🧢</div>
-          <small>images/cat-acc.jpg</small>
-        </div>
-      </div>
-      <div class="cat-overlay">
-        <div class="cat-label">ACCESSOIRES</div>
-        <div class="cat-sub">تسوق الآن →</div>
-      </div>
-    </div>
-    <div class="cat-card" onclick="window.location='shop.html'">
-      <div class="cat-placeholder" style="background:linear-gradient(135deg,#161616,#0e0e0e);">
-        <div style="text-align:center;color:#333">
-          <div style="font-size:4rem">👟</div>
-          <small>images/cat-shoes.jpg</small>
-        </div>
-      </div>
-      <div class="cat-overlay">
-        <div class="cat-label">CHAUSSURES</div>
-        <div class="cat-sub">تسوق الآن →</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED PRODUCTS -->
-<section class="section" style="padding-top:0">
-  <div class="section-header">
-    <h2 class="section-title">المنتجات <span>المميزة</span></h2>
-    <a href="shop.html" class="section-link">عرض الكل ←</a>
-  </div>
-  <div class="products-grid">
-    <div class="product-card" onclick="window.location='shop.html'">
-      <div class="product-img">
-        <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg" alt="هودي واسع رمادي فاتح" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#161616;color:#333;font-size:3rem\'>👕</div>'">
-        <div class="product-badge">NEW</div>
-      </div>
-      <div class="product-info">
-        <div class="product-name">هودي واسع - رمادي فاتح</div>
-        <div class="product-price"><span>5000 دج</span>4500 دج</div>
-        <button class="product-buy" onclick="event.stopPropagation(); openOrder('هودي واسع رمادي فاتح', 4500)">طلب الآن</button>
-      </div>
-    </div>
-    <div class="product-card" onclick="window.location='shop.html'">
-      <div class="product-img">
-        <img src="images/34f69334ae9678325b0f2e81120417e9.jpg" alt="سويت شيرت كرو أسود" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#161616;color:#333;font-size:3rem\'>👕</div>'">
-        <div class="product-badge">BEST</div>
-      </div>
-      <div class="product-info">
-        <div class="product-name">سويت شيرت كرو - أسود</div>
-        <div class="product-price">3800 دج</div>
-        <button class="product-buy" onclick="event.stopPropagation(); openOrder('سويت شيرت كرو أسود', 3800)">طلب الآن</button>
-      </div>
-    </div>
-    <div class="product-card" onclick="window.location='shop.html'">
-      <div class="product-img">
-        <img src="images/1776760694605.png" alt="بنطلون سويت واسع أسود" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#161616;color:#333;font-size:3rem\'>👖</div>'">
-      </div>
-      <div class="product-info">
-        <div class="product-name">بنطلون سويت واسع - أسود</div>
-        <div class="product-price">3000 دج</div>
-        <button class="product-buy" onclick="event.stopPropagation(); openOrder('بنطلون سويت واسع أسود', 3000)">طلب الآن</button>
-      </div>
-    </div>
-    <div class="product-card" onclick="window.location='shop.html'">
-      <div class="product-img">
-        <img src="images/6b8928a16d0de61fd3f61f15b06c9c65.jpg" alt="تيشرت Urban DZ" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#161616;color:#333;font-size:3rem\'>👕</div>'">
-        <div class="product-badge">HOT</div>
-      </div>
-      <div class="product-info">
-        <div class="product-name">تيشرت Urban DZ</div>
-        <div class="product-price">4000 دج</div>
-        <button class="product-buy" onclick="event.stopPropagation(); openOrder('تيشرت Urban DZ', 4000)">طلب الآن</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROMO BANNER -->
-<div class="promo-banner">
-  <div class="promo-text">
-    <h2>وصيلات حصرية<br>على المجموعات الجديدة</h2>
-    <p>اكتشف أحدث الموديلات — جودة عالية بأسعار تناسيك 🔥</p>
-  </div>
-  <a href="shop.html" class="promo-btn">تسوق الآن ←</a>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="logo-text">URBAN <span>DZ</span></div>
-      <p>أفضل تصاميم الملابس العصرية في الجزائر. ستايل شبابي، جودة عالية، وأسعار تناسيك.</p>
-      <div style="margin-top:18px; display:flex; gap:12px;">
-        <a href="#" style="color:var(--green); text-decoration:none; font-size:1.3rem;">📘</a>
-        <a href="#" style="color:var(--green); text-decoration:none; font-size:1.3rem;">📷</a>
-        <a href="https://wa.me/213559049058" style="color:var(--green); text-decoration:none; font-size:1.3rem;">💬</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>الأقسام</h4>
-      <ul>
-        <li><a href="shop.html">رجال</a></li>
-        <li><a href="shop.html">نساء</a></li>
-        <li><a href="shop.html">إكسسوارات</a></li>
-        <li><a href="shop.html">أحذية</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>تواصل معنا</h4>
-      <ul>
-        <li><a href="https://wa.me/213559049058">واتساب: 213559049058+</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Facebook</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 Urban DZ — جميع الحقوق محفوظة</span>
-    <span>🇩🇿 Made in Algeria</span>
-  </div>
+  <p>© 2025 Urban DZ — جميع الحقوق محفوظة</p>
 </footer>
 
 <script>
@@ -776,11 +197,7 @@
     if (!name) return;
     let phone = prompt("رقم الهاتف:");
     if (!phone) return;
-    let state = prompt("الولاية:");
-    if (!state) return;
-    let qty = prompt("عدد القطع:", "1");
-    if (!qty) return;
-    let msg = `طلب جديد! 🛍️%0A%0A🔹 المنتج: ${productName}%0A💰 السعر: ${price} دج%0A👤 الزبون: ${name}%0A📞 الهاتف: ${phone}%0A📍 الولاية: ${state}%0A📦 العدد: ${qty}%0A%0A✅ إجمالي: ${price * parseInt(qty)} دج`;
+    let msg = `طلب جديد! %0Aالمنتج: ${productName}%0Aالسعر: ${price} دج%0Aالاسم: ${name}%0Aالهاتف: ${phone}`;
     window.open(`https://wa.me/213559049058?text=${msg}`, '_blank');
   }
 </script>
