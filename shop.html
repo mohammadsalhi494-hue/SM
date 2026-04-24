@@ -10,7 +10,7 @@
       --primary: #51443A;
       --bg: #F3E9D5;
       --card: #ffffff;
-      --border: #E0D5C5;
+      --border: #d4c7b7;
       --text: #51443A;
       --muted: #8c7e72;
     }
@@ -31,9 +31,8 @@
       backdrop-filter: blur(10px); z-index: 100;
     }
     .nav-logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--primary); letter-spacing: 2px; text-decoration: none; }
-    .nav-logo span { color: var(--primary); }
     .nav-links { display: flex; gap: 30px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--primary); }
     .cart-btn {
       background: var(--primary); color: #fff; border: none; padding: 8px 20px;
@@ -43,27 +42,30 @@
     /* PAGE HEADER */
     .page-header { padding: 50px 40px 30px; border-bottom: 1px solid var(--border); }
     .page-header h1 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: var(--primary); }
+    .page-header h1 span { color: var(--primary); opacity: 0.7; }
 
     /* SHOP LAYOUT */
-    .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; }
+    .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; min-height: 60vh; }
     .sidebar { border-left: 1px solid var(--border); padding: 30px 25px; }
-    .filter-title { color: var(--muted); font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase; }
-    .filter-tag { border: 1px solid var(--border); color: var(--muted); padding: 5px 12px; margin: 5px; cursor: pointer; background: none; }
-    .filter-tag.active { border-color: var(--primary); color: var(--primary); }
+    .filter-title { color: var(--muted); font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
+    .filter-tag { border: 1px solid var(--border); color: var(--muted); padding: 5px 12px; margin: 5px; cursor: pointer; background: none; font-family: 'Cairo'; border-radius: 4px; }
+    .filter-tag.active { border-color: var(--primary); color: var(--primary); background: #e0d5c5; }
 
     /* PRODUCT GRID */
     .shop-main { padding: 25px 35px; }
     .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .product-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; }
-    .product-price { color: var(--primary); font-weight: 700; }
-    .quick-buy { background: var(--primary); color: #fff; border: none; padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; }
+    .product-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; transition: transform 0.2s; }
+    .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .product-name { font-weight: 700; margin-bottom: 8px; }
+    .product-price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+    .quick-buy { background: var(--primary); color: #fff; border: none; padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: 700; margin-top: 10px; }
 
     /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; z-index: 1000; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(81,68,58,0.8); align-items: center; justify-content: center; z-index: 1000; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #fff; padding: 35px; border-radius: 12px; width: 400px; color: var(--text); }
-    .modal input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border); }
-    .modal-confirm { background: var(--primary); color: #fff; padding: 10px; width: 100%; border: none; cursor: pointer; }
+    .modal { background: #fff; padding: 35px; border-radius: 12px; width: 400px; color: var(--text); border: 2px solid var(--primary); }
+    .modal input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 6px; }
+    .modal-confirm { background: var(--primary); color: #fff; padding: 12px; width: 100%; border: none; cursor: pointer; font-weight: 700; }
   </style>
 </head>
 <body>
@@ -92,6 +94,7 @@
     <div class="filter-title">القسم</div>
     <button class="filter-tag active">الكل</button>
     <button class="filter-tag">HOMME</button>
+    <button class="filter-tag">FEMME</button>
   </aside>
 
   <main class="shop-main">
@@ -101,7 +104,7 @@
         <div class="product-price">4500 دج</div>
         <button class="quick-buy" onclick="openModal('هودي واسع', 4500)">طلب الآن</button>
       </div>
-      </div>
+    </div>
   </main>
 </div>
 
@@ -119,7 +122,7 @@
     document.getElementById('modalOverlay').classList.add('open');
   }
   function confirmOrder() {
-    alert("تم الطلب!");
+    alert("تم الطلب بنجاح!");
     document.getElementById('modalOverlay').classList.remove('open');
   }
 </script>
