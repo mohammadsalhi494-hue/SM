@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urban DZ | الرئيسية</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<title>Urban DZ</title>
 
 <style>
 :root{
@@ -18,7 +16,7 @@
 
 body{
 margin:0;
-font-family:Cairo;
+font-family:sans-serif;
 background:var(--dark);
 color:var(--text);
 }
@@ -27,7 +25,7 @@ color:var(--text);
 nav{
 display:flex;
 justify-content:space-between;
-padding:20px;
+padding:15px;
 border-bottom:1px solid var(--border);
 }
 
@@ -36,24 +34,19 @@ border-bottom:1px solid var(--border);
 .btn{
 background:var(--main);
 color:#000;
-padding:10px 25px;
+padding:8px 20px;
 text-decoration:none;
-font-weight:bold;
 }
 
 /* HERO */
 .hero{
 text-align:center;
-padding:80px 20px;
+padding:60px 20px;
 }
 
-.hero h1{
-font-size:3rem;
-}
-
-.hero p{
-color:#ddd;
-margin:20px 0;
+.hero img{
+width:200px;
+border-radius:10px;
 }
 
 /* PRODUCTS */
@@ -66,17 +59,21 @@ padding:20px;
 
 .card{
 background:var(--card);
-padding:15px;
-border-radius:8px;
+padding:10px;
+border-radius:10px;
 border:1px solid var(--border);
+}
+
+.card img{
+width:100%;
+border-radius:8px;
 }
 
 .buy{
 margin-top:10px;
-display:block;
 text-align:center;
+padding:8px;
 border:1px solid var(--border);
-padding:10px;
 cursor:pointer;
 }
 
@@ -96,22 +93,25 @@ color:#000;
 
 <section class="hero">
 <h1>ستايل يبدأ من هنا</h1>
-<p>ملابس عصرية في الجزائر 🔥</p>
-<a href="shop.html" class="btn">تسوق الآن</a>
+<img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg">
 </section>
 
 <section class="products">
+
 <div class="card">
-<h3>هودي رمادي</h3>
-<p>4500 دج</p>
-<div class="buy" onclick="order('هودي',4500)">طلب</div>
+<img src="images/34f69334ae9678325b0f2e81120417e9.jpg">
+<h3>سويت شيرت</h3>
+<p>3800 دج</p>
+<div class="buy" onclick="order('سويت شيرت',3800)">طلب</div>
 </div>
 
 <div class="card">
+<img src="images/6b8928a16d0de61fd3f61f15b06c9c65.jpg">
 <h3>تيشرت</h3>
-<p>3000 دج</p>
-<div class="buy" onclick="order('تيشرت',3000)">طلب</div>
+<p>2500 دج</p>
+<div class="buy" onclick="order('تيشرت',2500)">طلب</div>
 </div>
+
 </section>
 
 <script>
