@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urban DZ | Shop</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<title>Shop</title>
 
 <style>
 :root{
@@ -18,20 +16,17 @@
 
 body{
 margin:0;
-font-family:Cairo;
 background:var(--dark);
 color:var(--text);
+font-family:sans-serif;
 }
 
-/* NAV */
 nav{
 display:flex;
 justify-content:space-between;
-padding:20px;
+padding:15px;
 border-bottom:1px solid var(--border);
 }
-
-.logo span{color:var(--main)}
 
 .products{
 display:grid;
@@ -42,17 +37,21 @@ padding:20px;
 
 .card{
 background:var(--card);
-padding:15px;
-border-radius:8px;
+padding:10px;
+border-radius:10px;
 border:1px solid var(--border);
+}
+
+.card img{
+width:100%;
+border-radius:8px;
 }
 
 .buy{
 margin-top:10px;
-display:block;
 text-align:center;
+padding:8px;
 border:1px solid var(--border);
-padding:10px;
 cursor:pointer;
 }
 
@@ -66,7 +65,7 @@ color:#000;
 <body>
 
 <nav>
-<div class="logo">URBAN <span>DZ</span></div>
+<div>URBAN DZ</div>
 <a href="index.html">🏠</a>
 </nav>
 
@@ -75,27 +74,38 @@ color:#000;
 <section class="products">
 
 <div class="card">
-<h3>هودي أسود</h3>
+<img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg">
+<h3>هودي</h3>
 <p>4500 دج</p>
-<div class="buy" onclick="order('هودي أسود',4500)">طلب</div>
+<div class="buy" onclick="order('هودي',4500)">طلب</div>
 </div>
 
 <div class="card">
-<h3>سويت شيرت</h3>
-<p>3800 دج</p>
-<div class="buy" onclick="order('سويت شيرت',3800)">طلب</div>
+<img src="images/9b0681c634d72d8ab880fd4091dba21a.jpg">
+<h3>هودي آخر</h3>
+<p>4200 دج</p>
+<div class="buy" onclick="order('هودي',4200)">طلب</div>
 </div>
 
 <div class="card">
+<img src="images/f13d461a52de34f9b012cc64366238bf.jpg">
 <h3>بنطلون</h3>
 <p>3000 دج</p>
 <div class="buy" onclick="order('بنطلون',3000)">طلب</div>
 </div>
 
 <div class="card">
-<h3>تيشرت</h3>
-<p>2500 دج</p>
-<div class="buy" onclick="order('تيشرت',2500)">طلب</div>
+<img src="images/e906a4192df53b015be23eca79dcf1ed.jpg">
+<h3>ستايل جديد</h3>
+<p>3500 دج</p>
+<div class="buy" onclick="order('منتج',3500)">طلب</div>
+</div>
+
+<div class="card">
+<img src="images/823039fe5e5030e66798f11e69823ee0.jpg">
+<h3>لووك كامل</h3>
+<p>6000 دج</p>
+<div class="buy" onclick="order('لووك',6000)">طلب</div>
 </div>
 
 </section>
