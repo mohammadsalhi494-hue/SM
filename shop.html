@@ -1,130 +1,111 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban DZ | المتجر</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #51443A;
-      --bg: #F3E9D5;
-      --card: #ffffff;
-      --border: #d4c7b7;
-      --text: #51443A;
-      --muted: #8c7e72;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban DZ | Shop</title>
 
-    /* TICKER */
-    .ticker-wrap { background: var(--primary); overflow: hidden; white-space: nowrap; padding: 8px 0; }
-    .ticker-inner { display: inline-flex; animation: ticker 20s linear infinite; }
-    .ticker-inner span { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 3px; padding: 0 30px; color: #fff; }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
-    /* NAV */
-    nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 18px 40px; border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; background: rgba(243, 233, 213, 0.95);
-      backdrop-filter: blur(10px); z-index: 100;
-    }
-    .nav-logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--primary); letter-spacing: 2px; text-decoration: none; }
-    .nav-links { display: flex; gap: 30px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-    .cart-btn {
-      background: var(--primary); color: #fff; border: none; padding: 8px 20px;
-      border-radius: 4px; font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer;
-    }
+<style>
+:root{
+--main:#F3E9D5;
+--dark:#51443A;
+--card:#5a4c41;
+--border:#6a5a4d;
+--text:#F3E9D5;
+}
 
-    /* PAGE HEADER */
-    .page-header { padding: 50px 40px 30px; border-bottom: 1px solid var(--border); }
-    .page-header h1 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: var(--primary); }
-    .page-header h1 span { color: var(--primary); opacity: 0.7; }
+body{
+margin:0;
+font-family:Cairo;
+background:var(--dark);
+color:var(--text);
+}
 
-    /* SHOP LAYOUT */
-    .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; min-height: 60vh; }
-    .sidebar { border-left: 1px solid var(--border); padding: 30px 25px; }
-    .filter-title { color: var(--muted); font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
-    .filter-tag { border: 1px solid var(--border); color: var(--muted); padding: 5px 12px; margin: 5px; cursor: pointer; background: none; font-family: 'Cairo'; border-radius: 4px; }
-    .filter-tag.active { border-color: var(--primary); color: var(--primary); background: #e0d5c5; }
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px;
+border-bottom:1px solid var(--border);
+}
 
-    /* PRODUCT GRID */
-    .shop-main { padding: 25px 35px; }
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .product-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; transition: transform 0.2s; }
-    .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .product-name { font-weight: 700; margin-bottom: 8px; }
-    .product-price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
-    .quick-buy { background: var(--primary); color: #fff; border: none; padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: 700; margin-top: 10px; }
+.logo span{color:var(--main)}
 
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(81,68,58,0.8); align-items: center; justify-content: center; z-index: 1000; }
-    .modal-overlay.open { display: flex; }
-    .modal { background: #fff; padding: 35px; border-radius: 12px; width: 400px; color: var(--text); border: 2px solid var(--primary); }
-    .modal input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 6px; }
-    .modal-confirm { background: var(--primary); color: #fff; padding: 12px; width: 100%; border: none; cursor: pointer; font-weight: 700; }
-  </style>
+.products{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:var(--card);
+padding:15px;
+border-radius:8px;
+border:1px solid var(--border);
+}
+
+.buy{
+margin-top:10px;
+display:block;
+text-align:center;
+border:1px solid var(--border);
+padding:10px;
+cursor:pointer;
+}
+
+.buy:hover{
+background:var(--main);
+color:#000;
+}
+</style>
 </head>
+
 <body>
 
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <span>URBAN DZ</span><span>✦</span><span>MADE IN ALGERIA</span><span>✦</span>
-  </div>
-</div>
-
 <nav>
-  <a href="index.html" class="nav-logo">URBAN <span>DZ</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="shop.html" class="active">المتجر</a></li>
-  </ul>
-  <button class="cart-btn">🛒 السلة</button>
+<div class="logo">URBAN <span>DZ</span></div>
+<a href="index.html">🏠</a>
 </nav>
 
-<div class="page-header">
-  <h1>المنتجات <span>الجديدة</span></h1>
+<h2 style="padding:20px;">كل المنتجات</h2>
+
+<section class="products">
+
+<div class="card">
+<h3>هودي أسود</h3>
+<p>4500 دج</p>
+<div class="buy" onclick="order('هودي أسود',4500)">طلب</div>
 </div>
 
-<div class="shop-layout">
-  <aside class="sidebar">
-    <div class="filter-title">القسم</div>
-    <button class="filter-tag active">الكل</button>
-    <button class="filter-tag">HOMME</button>
-    <button class="filter-tag">FEMME</button>
-  </aside>
-
-  <main class="shop-main">
-    <div class="products-grid" id="productsGrid">
-      <div class="product-card">
-        <div class="product-name">هودي واسع - رمادي</div>
-        <div class="product-price">4500 دج</div>
-        <button class="quick-buy" onclick="openModal('هودي واسع', 4500)">طلب الآن</button>
-      </div>
-    </div>
-  </main>
+<div class="card">
+<h3>سويت شيرت</h3>
+<p>3800 دج</p>
+<div class="buy" onclick="order('سويت شيرت',3800)">طلب</div>
 </div>
 
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <h3>طلب سريع 🛍️</h3>
-    <input type="text" id="orderName" placeholder="الاسم واللقب">
-    <input type="text" id="orderPhone" placeholder="رقم الهاتف">
-    <button class="modal-confirm" onclick="confirmOrder()">إرسال واتساب</button>
-  </div>
+<div class="card">
+<h3>بنطلون</h3>
+<p>3000 دج</p>
+<div class="buy" onclick="order('بنطلون',3000)">طلب</div>
 </div>
+
+<div class="card">
+<h3>تيشرت</h3>
+<p>2500 دج</p>
+<div class="buy" onclick="order('تيشرت',2500)">طلب</div>
+</div>
+
+</section>
 
 <script>
-  function openModal(name, price) {
-    document.getElementById('modalOverlay').classList.add('open');
-  }
-  function confirmOrder() {
-    alert("تم الطلب بنجاح!");
-    document.getElementById('modalOverlay').classList.remove('open');
-  }
+function order(name,price){
+let msg=`طلب ${name} السعر ${price}`;
+window.open(`https://wa.me/213559049058?text=${msg}`);
+}
 </script>
+
 </body>
 </html>
